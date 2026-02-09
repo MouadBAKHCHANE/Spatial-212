@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog & Actualités | Spatial 212</title>
+    <meta name="description"
+        content="Découvrez les dernières actualités, innovations et projets de Spatial 212 en géomatique et télécoms.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Urbanist:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00ff9d',
+                        'primary-dark': '#00cc7d',
+                        'dark-bg': '#0B1120',
+                        'dark-card': '#111827',
+                        'dark-border': '#1f2937'
+                    },
+                    fontFamily: {
+                        urbanist: ['Urbanist', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B1120;
+        }
+
+        .font-urbanist {
+            font-family: 'Urbanist', sans-serif;
+        }
+
+        .glass {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 255, 157, 0.1);
+        }
+
+        .glow {
+            box-shadow: 0 0 40px rgba(0, 255, 157, 0.15);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 30px rgba(0, 255, 157, 0.5);
+        }
+
+        .gradient-bg {
+            background: radial-gradient(ellipse at top, rgba(0, 255, 157, 0.1) 0%, transparent 50%);
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 25px rgba(0, 255, 157, 0.4);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 157, 0.3);
+        }
+    </style>
+</head>
+
+<body class="text-gray-300 antialiased flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50"
+        style="background: rgba(11, 17, 32, 0.3); backdrop-filter: blur(8px);">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="font-urbanist font-bold text-2xl text-white">Spatial<span
+                        class="text-primary">212</span></a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html#expertise" class="hover:text-primary transition">Expertise</a>
+                    <a href="index.html#avantages" class="hover:text-primary transition">Avantages</a>
+                    <a href="blog.html" class="text-primary transition font-semibold">Blog</a>
+                    <a href="index.html#carrieres" class="hover:text-primary transition">Carrières</a>
+                    <a href="index.html#contact"
+                        class="bg-primary text-dark-bg px-5 py-2 rounded-full font-semibold hover:bg-primary-dark transition btn-glow">Contact</a>
+                </div>
+                <button id="menuBtn" class="md:hidden text-white"><svg class="w-6 h-6" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg></button>
+            </div>
+            <div id="mobileMenu" class="hidden md:hidden pb-4">
+                <a href="index.html#expertise" class="block py-2 hover:text-primary">Expertise</a>
+                <a href="index.html#avantages" class="block py-2 hover:text-primary">Avantages</a>
+                <a href="blog.html" class="block py-2 text-primary font-semibold">Blog</a>
+                <a href="index.html#carrieres" class="block py-2 hover:text-primary">Carrières</a>
+                <a href="index.html#contact" class="block py-2 hover:text-primary">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-12 gradient-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="font-urbanist font-bold text-4xl md:text-5xl text-white mb-4">Nos Dernières <span
+                    class="text-primary glow-text">Actualités</span></h1>
+            <p class="text-gray-400 max-w-2xl mx-auto text-lg">Restez informé sur les innovations en géomatique, fibre
+                optique et ingénierie.</p>
+        </div>
+    </section>
+
+    <!-- Blog Grid -->
+    <section class="py-12 flex-grow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Article 1 -->
+                <article class="glass rounded-2xl overflow-hidden card-hover h-full flex flex-col">
+                    <a href="article.html" class="block overflow-hidden relative group">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=200&fit=crop"
+                            alt="Data Processing"
+                            class="w-full h-48 object-cover transform group-hover:scale-105 transition duration-500">
+                        <div
+                            class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition duration-300">
+                        </div>
+                    </a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-center mb-3">
+                            <span
+                                class="text-primary text-xs font-semibold px-2 py-1 rounded bg-primary/10 border border-primary/20">Géomatique</span>
+                            <span class="text-gray-500 text-xs">12 Fév 2026</span>
+                        </div>
+                        <h3 class="font-urbanist font-bold text-lg text-white mb-3 hover:text-primary transition">
+                            <a href="article.html">L'automatisation Python/SQL dans le traitement des données
+                                télécoms</a>
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-4 flex-grow">Découvrez comment nous optimisons le traitement
+                            massif de données géographiques pour accélérer les déploiements.</p>
+                        <a href="article.html"
+                            class="inline-flex items-center text-primary text-sm font-semibold hover:tracking-wide transition-all">
+                            Lire l'article <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="glass rounded-2xl overflow-hidden card-hover h-full flex flex-col">
+                    <a href="article.html" class="block overflow-hidden relative group">
+                        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&h=200&fit=crop"
+                            alt="Fiber Optic"
+                            class="w-full h-48 object-cover transform group-hover:scale-105 transition duration-500">
+                        <div
+                            class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition duration-300">
+                        </div>
+                    </a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-center mb-3">
+                            <span
+                                class="text-primary text-xs font-semibold px-2 py-1 rounded bg-primary/10 border border-primary/20">Télécom</span>
+                            <span class="text-gray-500 text-xs">05 Fév 2026</span>
+                        </div>
+                        <h3 class="font-urbanist font-bold text-lg text-white mb-3 hover:text-primary transition">
+                            <a href="article.html">L'importance de la mesure OTDR dans la réception des réseaux
+                                fibre</a>
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-4 flex-grow">Les tests OTDR sont essentiels pour garantir la
+                            qualité du signal. Analyse de nos méthodes de validation terrain.</p>
+                        <a href="article.html"
+                            class="inline-flex items-center text-primary text-sm font-semibold hover:tracking-wide transition-all">
+                            Lire l'article <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="glass rounded-2xl overflow-hidden card-hover h-full flex flex-col">
+                    <a href="article.html" class="block overflow-hidden relative group">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop"
+                            alt="GIS Map"
+                            class="w-full h-48 object-cover transform group-hover:scale-105 transition duration-500">
+                        <div
+                            class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition duration-300">
+                        </div>
+                    </a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-center mb-3">
+                            <span
+                                class="text-primary text-xs font-semibold px-2 py-1 rounded bg-primary/10 border border-primary/20">SIG</span>
+                            <span class="text-gray-500 text-xs">28 Jan 2026</span>
+                        </div>
+                        <h3 class="font-urbanist font-bold text-lg text-white mb-3 hover:text-primary transition">
+                            <a href="article.html">Comment Spatial 212 optimise les études APS/APD via le SIG</a>
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-4 flex-grow">L'intégration SIG dans nos études de conception
+                            permet de réduire les coûts et d'anticiper les contraintes terrain.</p>
+                        <a href="article.html"
+                            class="inline-flex items-center text-primary text-sm font-semibold hover:tracking-wide transition-all">
+                            Lire l'article <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 4 (Placeholder) -->
+                <article class="glass rounded-2xl overflow-hidden card-hover h-full flex flex-col">
+                    <a href="article.html" class="block overflow-hidden relative group">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=200&fit=crop"
+                            alt="Equipe terrain"
+                            class="w-full h-48 object-cover transform group-hover:scale-105 transition duration-500">
+                        <div
+                            class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition duration-300">
+                        </div>
+                    </a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-center mb-3">
+                            <span
+                                class="text-primary text-xs font-semibold px-2 py-1 rounded bg-primary/10 border border-primary/20">Vie
+                                d'entreprise</span>
+                            <span class="text-gray-500 text-xs">15 Jan 2026</span>
+                        </div>
+                        <h3 class="font-urbanist font-bold text-lg text-white mb-3 hover:text-primary transition">
+                            <a href="article.html">Retour sur notre séminaire annuel</a>
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-4 flex-grow">Moments forts, partage de vision et team
+                            building : Spatial 212 prépare les défis de l'année 2026.</p>
+                        <a href="article.html"
+                            class="inline-flex items-center text-primary text-sm font-semibold hover:tracking-wide transition-all">
+                            Lire l'article <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 5 (Placeholder) -->
+                <article class="glass rounded-2xl overflow-hidden card-hover h-full flex flex-col">
+                    <a href="article.html" class="block overflow-hidden relative group">
+                        <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?w=400&h=200&fit=crop"
+                            alt="Technologies"
+                            class="w-full h-48 object-cover transform group-hover:scale-105 transition duration-500">
+                        <div
+                            class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition duration-300">
+                        </div>
+                    </a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-center mb-3">
+                            <span
+                                class="text-primary text-xs font-semibold px-2 py-1 rounded bg-primary/10 border border-primary/20">Innovation</span>
+                            <span class="text-gray-500 text-xs">10 Jan 2026</span>
+                        </div>
+                        <h3 class="font-urbanist font-bold text-lg text-white mb-3 hover:text-primary transition">
+                            <a href="article.html">L'avenir de la 5G au Maroc</a>
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-4 flex-grow">Analyse des enjeux et des opportunités liés au
+                            déploiement des infrastructures 5G dans le royaume.</p>
+                        <a href="article.html"
+                            class="inline-flex items-center text-primary text-sm font-semibold hover:tracking-wide transition-all">
+                            Lire l'article <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 6 (Placeholder) -->
+                <article class="glass rounded-2xl overflow-hidden card-hover h-full flex flex-col">
+                    <a href="article.html" class="block overflow-hidden relative group">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=200&fit=crop"
+                            alt="Recrutement"
+                            class="w-full h-48 object-cover transform group-hover:scale-105 transition duration-500">
+                        <div
+                            class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition duration-300">
+                        </div>
+                    </a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-center mb-3">
+                            <span
+                                class="text-primary text-xs font-semibold px-2 py-1 rounded bg-primary/10 border border-primary/20">Carrières</span>
+                            <span class="text-gray-500 text-xs">02 Jan 2026</span>
+                        </div>
+                        <h3 class="font-urbanist font-bold text-lg text-white mb-3 hover:text-primary transition">
+                            <a href="article.html">Interview : Parcours d'un Chef de Projet FTTH</a>
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-4 flex-grow">Rencontre avec Karim, qui partage son expérience
+                            et son quotidien chez Spatial 212.</p>
+                        <a href="article.html"
+                            class="inline-flex items-center text-primary text-sm font-semibold hover:tracking-wide transition-all">
+                            Lire l'article <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Pagination (Placeholder) -->
+            <div class="flex justify-center mt-12 gap-2">
+                <button
+                    class="w-10 h-10 rounded-full bg-primary text-dark-bg font-bold flex items-center justify-center hover:bg-primary-dark transition">1</button>
+                <button
+                    class="w-10 h-10 rounded-full bg-dark-card border border-dark-border text-gray-400 font-bold flex items-center justify-center hover:border-primary hover:text-primary transition">2</button>
+                <button
+                    class="w-10 h-10 rounded-full bg-dark-card border border-dark-border text-gray-400 font-bold flex items-center justify-center hover:border-primary hover:text-primary transition">→</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative group bg-dark-bg overflow-hidden pt-20">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
+                alt="" class="w-full h-full object-cover opacity-20">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0B1120] via-[#0B1120]/80 to-transparent"></div>
+        </div>
+
+        <!-- Main Footer Content -->
+        <div class="relative z-10 border-t border-white/10 pt-12 pb-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                    <!-- Brand Column -->
+                    <div>
+                        <a href="index.html" class="font-urbanist font-bold text-2xl text-white block mb-6">Spatial<span
+                                class="text-primary">212</span></a>
+                        <p class="text-gray-400 mb-6 leading-relaxed">Pionniers de l'ingénierie géomatique et des
+                            infrastructures télécoms au Maroc.</p>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div>
+                        <h3 class="font-urbanist font-bold text-lg text-white mb-6">Liens Rapides</h3>
+                        <ul class="space-y-4">
+                            <li><a href="index.html#hero"
+                                    class="text-gray-400 hover:text-primary transition flex items-center gap-2"><span
+                                        class="w-1.5 h-1.5 rounded-full bg-primary/50"></span>Accueil</a></li>
+                            <li><a href="index.html#expertise"
+                                    class="text-gray-400 hover:text-primary transition flex items-center gap-2"><span
+                                        class="w-1.5 h-1.5 rounded-full bg-primary/50"></span>Expertise</a></li>
+                            <li><a href="index.html#avantages"
+                                    class="text-gray-400 hover:text-primary transition flex items-center gap-2"><span
+                                        class="w-1.5 h-1.5 rounded-full bg-primary/50"></span>Avantages</a></li>
+                            <li><a href="blog.html"
+                                    class="text-gray-400 hover:text-primary transition flex items-center gap-2"><span
+                                        class="w-1.5 h-1.5 rounded-full bg-primary/50"></span>Blog</a></li>
+                            <li><a href="index.html#carrieres"
+                                    class="text-gray-400 hover:text-primary transition flex items-center gap-2"><span
+                                        class="w-1.5 h-1.5 rounded-full bg-primary/50"></span>Carrières</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Useful Links -->
+                    <div>
+                        <h3 class="font-urbanist font-bold text-lg text-white mb-6">Liens Utiles</h3>
+                        <ul class="space-y-4">
+                            <li><a href="privacy.html"
+                                    class="text-gray-400 hover:text-primary transition flex items-center gap-2"><span
+                                        class="w-1.5 h-1.5 rounded-full bg-primary/50"></span>Politique de
+                                    Confidentialité</a></li>
+                            <li><a href="terms.html"
+                                    class="text-gray-400 hover:text-primary transition flex items-center gap-2"><span
+                                        class="w-1.5 h-1.5 rounded-full bg-primary/50"></span>Conditions Générales</a>
+                            </li>
+                            <li><a href="legal.html"
+                                    class="text-gray-400 hover:text-primary transition flex items-center gap-2"><span
+                                        class="w-1.5 h-1.5 rounded-full bg-primary/50"></span>Mentions Légales</a></li>
+                            <li><a href="index.html#contact"
+                                    class="text-gray-400 hover:text-primary transition flex items-center gap-2"><span
+                                        class="w-1.5 h-1.5 rounded-full bg-primary/50"></span>Support</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact -->
+                    <div>
+                        <h3 class="font-urbanist font-bold text-lg text-white mb-6">Contact</h3>
+                        <ul class="space-y-4 text-gray-400">
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-primary mt-1 shrink-0" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                                <a href="mailto:contact@spatial212.ma"
+                                    class="hover:text-primary transition">contact@spatial212.ma</a>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-primary mt-1 shrink-0" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <span>Rabat, Maroc</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p class="text-gray-500 text-sm">© Copyright 2026. All Rights Reserved.</p>
+                    <p class="text-gray-500 text-sm flex items-center gap-1">Designed by <span
+                            class="text-white">Spatial 212</span></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    </script>
+</body>
+
+</html>

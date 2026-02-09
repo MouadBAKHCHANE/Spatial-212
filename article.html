@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'automatisation Python/SQL - Blog | Spatial 212</title>
+    <meta name="description"
+        content="Article de blog Spatial 212 sur l'automatisation Python/SQL dans le traitement des données télécoms.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Urbanist:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00ff9d',
+                        'primary-dark': '#00cc7d',
+                        'dark-bg': '#0B1120',
+                        'dark-card': '#111827',
+                        'dark-border': '#1f2937'
+                    },
+                    fontFamily: {
+                        urbanist: ['Urbanist', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B1120;
+        }
+
+        .font-urbanist {
+            font-family: 'Urbanist', sans-serif;
+        }
+
+        .glass {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 255, 157, 0.1);
+        }
+
+        .glow {
+            box-shadow: 0 0 40px rgba(0, 255, 157, 0.15);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 30px rgba(0, 255, 157, 0.5);
+        }
+
+        .gradient-bg {
+            background: radial-gradient(ellipse at top, rgba(0, 255, 157, 0.1) 0%, transparent 50%);
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 25px rgba(0, 255, 157, 0.4);
+        }
+
+        .prose h2 {
+            font-family: 'Urbanist', sans-serif;
+            color: white;
+            font-weight: 700;
+            font-size: 1.875rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .prose h3 {
+            font-family: 'Urbanist', sans-serif;
+            color: white;
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .prose p {
+            color: #9ca3af;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .prose ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            color: #9ca3af;
+            margin-bottom: 1.5rem;
+        }
+
+        .prose li {
+            margin-bottom: 0.5rem;
+        }
+
+        .prose strong {
+            color: #00ff9d;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body class="text-gray-300 antialiased flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50"
+        style="background: rgba(11, 17, 32, 0.3); backdrop-filter: blur(8px);">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="font-urbanist font-bold text-2xl text-white">Spatial<span
+                        class="text-primary">212</span></a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html#expertise" class="hover:text-primary transition">Expertise</a>
+                    <a href="index.html#avantages" class="hover:text-primary transition">Avantages</a>
+                    <a href="blog.html" class="text-primary transition font-semibold">Blog</a>
+                    <a href="index.html#carrieres" class="hover:text-primary transition">Carrières</a>
+                    <a href="index.html#contact"
+                        class="bg-primary text-dark-bg px-5 py-2 rounded-full font-semibold hover:bg-primary-dark transition btn-glow">Contact</a>
+                </div>
+                <button id="menuBtn" class="md:hidden text-white"><svg class="w-6 h-6" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg></button>
+            </div>
+            <div id="mobileMenu" class="hidden md:hidden pb-4">
+                <a href="index.html#expertise" class="block py-2 hover:text-primary">Expertise</a>
+                <a href="index.html#avantages" class="block py-2 hover:text-primary">Avantages</a>
+                <a href="blog.html" class="block py-2 text-primary font-semibold">Blog</a>
+                <a href="index.html#carrieres" class="block py-2 hover:text-primary">Carrières</a>
+                <a href="index.html#contact" class="block py-2 hover:text-primary">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Article Hero -->
+    <div class="relative h-[60vh] w-full overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1600&h=900&fit=crop" alt="Data Processing"
+            class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0B1120]/50 via-[#0B1120]/70 to-[#0B1120]"></div>
+        <div class="absolute bottom-0 left-0 w-full p-8 pb-16">
+            <div class="max-w-4xl mx-auto">
+                <a href="blog.html" class="inline-flex items-center text-primary mb-6 hover:underline transition">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Retour aux actualités
+                </a>
+                <span class="block text-primary font-semibold tracking-wide uppercase text-sm mb-3">Géomatique • 12
+                    Février 2026</span>
+                <h1 class="font-urbanist font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-tight">
+                    L'automatisation Python/SQL dans le traitement des données télécoms
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Content -->
+    <article class="flex-grow py-12">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass rounded-3xl p-8 md:p-12 mb-12">
+                <div class="prose max-w-none">
+                    <p class="text-xl text-white font-medium leading-relaxed">
+                        Dans l'ingénierie moderne des télécommunications, le volume de données à traiter est
+                        exponentiel.
+                        Chez Spatial 212, nous ne nous contentons pas de traiter ces données : nous les automatisons
+                        pour
+                        gagner en précision et en rapidité. Voici comment l'alliance de Python et SQL transforme nos
+                        livrables.
+                    </p>
+
+                    <h2>Le défi de la volumétrie</h2>
+                    <p>
+                        Le déploiement d'un réseau FTTH implique des millions de points de données : adresses, poteaux,
+                        chambres souterraines, câbles, boîtiers. Les méthodes manuelles traditionnelles sous Excel ou
+                        SIG
+                        classique montrent rapidement leurs limites : erreurs humaines, lenteur de traitement,
+                        difficulté
+                        de mise à jour.
+                    </p>
+
+                    <h2>Notre approche : L'ingénierie pilotée par la donnée</h2>
+                    <p>
+                        Nous avons développé des scripts internes permettant d'automatiser 80% des tâches répétitives.
+                        Cela nous permet de nous concentrer sur la valeur ajoutée : l'analyse et l'optimisation.
+                    </p>
+
+                    <h3>1. Consolidation et Nettoyage (ETL)</h3>
+                    <p>
+                        Grâce à des pipelines Python (Pandas, GeoPandas), nous agrégeons des sources hétéroclites
+                        (relevés terrain, cadastre, données opérateurs). Nos algorithmes détectent automatiquement :
+                    </p>
+                    <ul>
+                        <li>Les incohérences topologiques (ex: un câble non connecté).</li>
+                        <li>Les doublons d'adresses.</li>
+                        <li>Les erreurs d'attributs (types de câbles incohérents).</li>
+                    </ul>
+
+                    <h3>2. Analyse Spatiale Avancée avec PostGIS</h3>
+                    <p>
+                        Nous utilisons la puissance de SQL couplée à l'extension spatiale PostGIS pour effectuer des
+                        calculs complexes en quelques secondes :
+                    </p>
+                    <ul>
+                        <li><strong>Calcul de linéaires optimisé :</strong> Trouver le chemin le plus court pour le
+                            raccordement en tenant compte des obstacles.</li>
+                        <li><strong>Zonage automatique :</strong> Découper une ville en zones de déploiement équilibrées
+                            (SRO/PBO).</li>
+                    </ul>
+
+                    <div class="my-10 p-6 bg-primary/5 border-l-4 border-primary rounded-r-lg">
+                        <p class="mb-0 italic text-white">
+                            "L'automatisation ne remplace pas l'ingénieur, elle lui donne des super-pouvoirs. Ce qui
+                            prenait 3 jours de saisie prend désormais 30 minutes de contrôle."
+                        </p>
+                        <span class="block mt-4 text-sm font-bold text-primary">— Directeur Technique, Spatial
+                            212</span>
+                    </div>
+
+                    <h2>Bénéfices pour nos clients</h2>
+                    <p>
+                        Cette approche tech-centric se traduit par des avantages concrets :
+                    </p>
+                    <ul>
+                        <li><strong>Délais réduits :</strong> Accélération des phases d'études (APS/APD).</li>
+                        <li><strong>Qualité accrue :</strong> Réduction drastique des erreurs de saisie.</li>
+                        <li><strong>Interopérabilité :</strong> Livrables compatibles avec tous les standards
+                            (Shapefile, GeoJSON, AutoCAD).</li>
+                    </ul>
+
+                    <p>
+                        En intégrant le développement logiciel au cœur de notre métier de géomaticien, Spatial 212
+                        redéfinit les standards de l'ingénierie télécom.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Share / Navigation area -->
+            <div class="flex justify-between items-center border-t border-gray-800 pt-8">
+                <a href="blog.html" class="text-gray-400 hover:text-white transition flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                        </path>
+                    </svg>
+                    Article précédent
+                </a>
+                <a href="blog.html"
+                    class="bg-primary/10 text-primary px-6 py-2 rounded-full font-semibold hover:bg-primary hover:text-dark-bg transition">
+                    Voir tous les articles
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition flex items-center gap-2">
+                    Article suivant
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="relative group bg-dark-bg overflow-hidden pt-20">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
+                alt="" class="w-full h-full object-cover opacity-20">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0B1120] via-[#0B1120]/80 to-transparent"></div>
+        </div>
+
+        <!-- Main Footer Content -->
+        <div class="relative z-10 border-t border-white/10 pt-12 pb-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                    <!-- Brand Column -->
+                    <div>
+                        <a href="index.html" class="font-urbanist font-bold text-2xl text-white block mb-6">Spatial<span
+                                class="text-primary">212</span></a>
+                        <p class="text-gray-400 mb-6 leading-relaxed">Pionniers de l'ingénierie géomatique et des
+                            infrastructures télécoms au Maroc.</p>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div>
+                        <h3 class="font-urbanist font-bold text-lg text-white mb-6">Liens Rapides</h3>
+                        <ul class="space-y-4">
+                            <li><a href="index.html#hero"
+                                    class="text-gray-400 hover:text-primary transition flex items-center gap-2"><span
+                                        class="w-1.5 h-1.5 rounded-full bg-primary/50"></span>Accueil</a></li>
+                            <li><a href="index.html#expertise"
+                                    class="text-gray-400 hover:text-primary transition flex items-center gap-2"><span
+                                        class="w-1.5 h-1.5 rounded-full bg-primary/50"></span>Expertise</a></li>
+                            <li><a href="index.html#avantages"
+                                    class="text-gray-400 hover:text-primary transition flex items-center gap-2"><span
+                                        class="w-1.5 h-1.5 rounded-full bg-primary/50"></span>Avantages</a></li>
+                            <li><a href="blog.html"
+                                    class="text-gray-400 hover:text-primary transition flex items-center gap-2"><span
+                                        class="w-1.5 h-1.5 rounded-full bg-primary/50"></span>Blog</a></li>
+                            <li><a href="index.html#carrieres"
+                                    class="text-gray-400 hover:text-primary transition flex items-center gap-2"><span
+                                        class="w-1.5 h-1.5 rounded-full bg-primary/50"></span>Carrières</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Useful Links -->
+                    <div>
+                        <h3 class="font-urbanist font-bold text-lg text-white mb-6">Liens Utiles</h3>
+                        <ul class="space-y-4">
+                            <li><a href="privacy.html"
+                                    class="text-gray-400 hover:text-primary transition flex items-center gap-2"><span
+                                        class="w-1.5 h-1.5 rounded-full bg-primary/50"></span>Politique de
+                                    Confidentialité</a></li>
+                            <li><a href="terms.html"
+                                    class="text-gray-400 hover:text-primary transition flex items-center gap-2"><span
+                                        class="w-1.5 h-1.5 rounded-full bg-primary/50"></span>Conditions Générales</a>
+                            </li>
+                            <li><a href="legal.html"
+                                    class="text-gray-400 hover:text-primary transition flex items-center gap-2"><span
+                                        class="w-1.5 h-1.5 rounded-full bg-primary/50"></span>Mentions Légales</a></li>
+                            <li><a href="index.html#contact"
+                                    class="text-gray-400 hover:text-primary transition flex items-center gap-2"><span
+                                        class="w-1.5 h-1.5 rounded-full bg-primary/50"></span>Support</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact -->
+                    <div>
+                        <h3 class="font-urbanist font-bold text-lg text-white mb-6">Contact</h3>
+                        <ul class="space-y-4 text-gray-400">
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-primary mt-1 shrink-0" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                                <a href="mailto:contact@spatial212.ma"
+                                    class="hover:text-primary transition">contact@spatial212.ma</a>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-primary mt-1 shrink-0" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <span>Rabat, Maroc</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p class="text-gray-500 text-sm">© Copyright 2026. All Rights Reserved.</p>
+                    <p class="text-gray-500 text-sm flex items-center gap-1">Designed by <span
+                            class="text-white">Spatial 212</span></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    </script>
+</body>
+
+</html>
