@@ -364,10 +364,31 @@
         </div>
     </footer>
 
+    <!-- Scroll to Top Button -->
+    <button id="scrollTopBtn"
+        class="fixed bottom-8 right-8 bg-primary text-dark-bg p-3 rounded-full shadow-lg translate-y-20 opacity-0 transition-all duration-300 hover:bg-primary-dark z-50 hover:shadow-primary/50">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+
     <script>
         const menuBtn = document.getElementById('menuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+        // Scroll to Top Logic
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.remove('translate-y-20', 'opacity-0');
+            } else {
+                scrollTopBtn.classList.add('translate-y-20', 'opacity-0');
+            }
+        });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     </script>
 </body>
 
