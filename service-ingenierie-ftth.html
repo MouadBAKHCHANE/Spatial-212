@@ -239,36 +239,59 @@
                     respectant les contraintes techniques, budgétaires et calendaires.
                 </p>
 
-                <h2 class="font-urbanist font-bold text-3xl text-white mt-10 mb-5">Nos prestations</h2>
+                <h2 class="font-urbanist font-bold text-3xl text-white mt-10 mb-8 px-4 sm:px-0">Nos prestations</h2>
                 <div class="grid md:grid-cols-2 gap-6 mt-6">
-                    <div class="bg-white/5 p-6 rounded-xl border border-primary/10">
-                        <h3 class="font-urbanist font-bold text-lg text-primary mb-2">Mise à jour Shapes NETGEO</h3>
-                        <p class="text-gray-400 text-sm">Actualisation et fiabilisation des données réseau dans
-                            l'écosystème NETGEO.</p>
+                    <!-- Mise à jour NETGEO -->
+                    <div class="bg-white/5 p-8 rounded-2xl border border-primary/10 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(0,255,157,0.15)] card-hover group relative overflow-hidden reveal-card min-h-[160px] flex items-center">
+                        <img src="assets/img/icon-ftth-netgeo.png" alt="" 
+                            class="absolute -top-6 -right-6 w-44 h-44 opacity-[0.2] brightness-110 group-hover:opacity-60 group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none rotate-12">
+                        
+                        <div class="relative z-10 pr-16 text-left">
+                            <h3 class="font-urbanist font-bold text-xl text-primary mb-3 group-hover:text-white transition-colors">Mise à jour Shapes NETGEO</h3>
+                            <p class="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">Actualisation et fiabilisation des données réseau dans l'écosystème NETGEO avec précision géométrique.</p>
+                        </div>
                     </div>
-                    <div class="bg-white/5 p-6 rounded-xl border border-primary/10 flex flex-col">
-                        <h3 class="font-urbanist font-bold text-lg text-primary mb-2">Numérisation plans RTC</h3>
-                        <p class="text-gray-400 text-sm mb-4">Conversion des plans réseaux RTC papier en couches SIG
-                            exploitables.</p>
-                        <a href="service-numerisation-plans-rtc.html"
-                            class="inline-flex items-center text-primary text-sm font-semibold hover:tracking-wide transition-all mt-auto group">
-                            Découvrir
-                            <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform"
-                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                            </svg>
-                        </a>
+
+                    <!-- Numérisation RTC -->
+                    <div class="bg-white/5 p-8 rounded-2xl border border-primary/10 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(0,255,157,0.15)] card-hover group relative overflow-hidden reveal-card min-h-[160px] flex items-center">
+                        <img src="assets/img/icon-ftth-num.png" alt="" 
+                            class="absolute -top-6 -right-6 w-44 h-44 opacity-[0.2] brightness-110 group-hover:opacity-60 group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none rotate-12">
+                        
+                        <div class="relative z-10 pr-16 text-left">
+                            <h3 class="font-urbanist font-bold text-xl text-primary mb-3 group-hover:text-white transition-colors">Numérisation plans RTC</h3>
+                            <p class="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors mb-4">Conversion des plans réseaux RTC papier en couches SIG vectorielles 100% exploitables.</p>
+                            <a href="service-numerisation-plans-rtc.html"
+                                class="inline-flex items-center text-primary text-sm font-semibold hover:tracking-wide transition-all group/link">
+                                Voir le service spécialisé
+                                <svg class="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
-                    <div class="bg-white/5 p-6 rounded-xl border border-primary/10">
-                        <h3 class="font-urbanist font-bold text-lg text-primary mb-2">APS – Avant-Projet Sommaire</h3>
-                        <p class="text-gray-400 text-sm">Études de faisabilité, dimensionnement préliminaire,
-                            chiffrage et arbitrages techniques.</p>
+
+                    <!-- APS -->
+                    <div class="bg-white/5 p-8 rounded-2xl border border-primary/10 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(0,255,157,0.15)] card-hover group relative overflow-hidden reveal-card min-h-[160px] flex items-center">
+                        <img src="assets/img/icon-ftth-aps.png" alt="" 
+                            class="absolute -top-6 -right-6 w-44 h-44 opacity-[0.2] brightness-110 group-hover:opacity-60 group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none rotate-12">
+                        
+                        <div class="relative z-10 pr-16 text-left">
+                            <h3 class="font-urbanist font-bold text-xl text-primary mb-3 group-hover:text-white transition-colors">APS – Avant-Projet Sommaire</h3>
+                            <p class="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">Études de faisabilité, dimensionnement préliminaire, chiffrage et arbitrages techniques stratégiques.</p>
+                        </div>
                     </div>
-                    <div class="bg-white/5 p-6 rounded-xl border border-primary/10">
-                        <h3 class="font-urbanist font-bold text-lg text-primary mb-2">APD – Avant-Projet Détaillé</h3>
-                        <p class="text-gray-400 text-sm">Dossiers d'exécution complets : tracés détaillés, BOM,
-                            documents pour appel d'offres travaux.</p>
+
+                    <!-- APD -->
+                    <div class="bg-white/5 p-8 rounded-2xl border border-primary/10 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(0,255,157,0.15)] card-hover group relative overflow-hidden reveal-card min-h-[160px] flex items-center">
+                        <img src="assets/img/icon-ftth-apd.png" alt="" 
+                            class="absolute -top-6 -right-6 w-44 h-44 opacity-[0.2] brightness-110 group-hover:opacity-60 group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none rotate-12">
+                        
+                        <div class="relative z-10 pr-16 text-left">
+                            <h3 class="font-urbanist font-bold text-xl text-primary mb-3 group-hover:text-white transition-colors">APD – Avant-Projet Détaillé</h3>
+                            <p class="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">Dossiers d'exécution complets : tracés détaillés, BOM, et documents techniques normés.</p>
+                        </div>
                     </div>
                 </div>
 
@@ -386,6 +409,45 @@
             });
         }
     </script>
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+    <style>
+        .reveal-card {
+            opacity: 0;
+            transform: scale(0.8) translateY(20px);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .reveal-active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+        /* Mobile/Tablet: Increase icon visibility when card is revealed */
+        .reveal-active img {
+            opacity: 0.4;
+        }
+        .reveal-active:hover img {
+            opacity: 0.6;
+        }
+        .reveal-active:nth-child(2) { transition-delay: 0.1s; }
+        .reveal-active:nth-child(3) { transition-delay: 0.2s; }
+        .reveal-active:nth-child(4) { transition-delay: 0.3s; }
+    </style>
 </body>
 
 </html>
