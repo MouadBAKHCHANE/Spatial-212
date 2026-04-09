@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intégration SIG - Services | Spatial 212</title>
+    <meta name="description"
+        content="Service d'intégration SIG Spatial 212 : solutions pour centraliser les données et suivre les réseaux en temps réel.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Urbanist:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00ff9d',
+                        'primary-dark': '#00cc7d',
+                        'dark-bg': '#0B1120',
+                        'dark-card': '#111827',
+                        'dark-border': '#1f2937'
+                    },
+                    fontFamily: {
+                        urbanist: ['Urbanist', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B1120;
+        }
+
+        .font-urbanist {
+            font-family: 'Urbanist', sans-serif;
+        }
+
+        .glass {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 255, 157, 0.1);
+        }
+
+        .glow {
+            box-shadow: 0 0 40px rgba(0, 255, 157, 0.15);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 30px rgba(0, 255, 157, 0.5);
+        }
+
+        .gradient-bg {
+            background: radial-gradient(ellipse at top, rgba(0, 255, 157, 0.1) 0%, transparent 50%);
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 25px rgba(0, 255, 157, 0.4);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 157, 0.3);
+        }
+
+        /* Services dropdown */
+        .nav-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(8px);
+            min-width: 260px;
+            background: rgba(11, 17, 32, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 255, 157, 0.15);
+            border-radius: 1rem;
+            padding: 0.75rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s ease;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-dropdown-trigger:hover .nav-dropdown,
+        .nav-dropdown:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .nav-dropdown a {
+            display: block;
+            padding: 0.6rem 0.9rem;
+            border-radius: 0.5rem;
+            color: #d1d5db;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+
+        .nav-dropdown a:hover {
+            background: rgba(0, 255, 157, 0.08);
+            color: #00ff9d;
+        }
+    </style>
+</head>
+
+<body class="text-gray-300 antialiased flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50"
+        style="background: rgba(11, 17, 32, 0.3); backdrop-filter: blur(8px);">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="font-urbanist font-bold text-2xl text-white">Spatial<span
+                        class="text-primary">212</span></a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html#industries" class="hover:text-primary transition">Industries</a>
+                    <div class="relative nav-dropdown-trigger">
+                        <a href="index.html#expertise"
+                            class="text-primary transition font-semibold flex items-center gap-1">Expertise
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </a>
+                        <div class="nav-dropdown">
+                            <a href="service-ingenierie-ftth.html">Ingénierie FTTH</a>
+                            <a href="service-analyse-spatiale.html">Analyse Spatiale</a>
+                            <a href="service-integration-sig.html">Intégration SIG</a>
+                        </div>
+                    </div>
+                    <div class="relative nav-dropdown-trigger">
+                        <a href="index.html#services"
+                            class="hover:text-primary transition flex items-center gap-1">Services
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </a>
+                        <div class="nav-dropdown">
+                            <a href="service-cartographie.html">Cartographie</a>
+                            <a href="service-releves-terrain.html">Relevés Terrain</a>
+                            <a href="service-gestion-donnees.html">Gestion Données</a>
+                        </div>
+                    </div>
+                    <a href="index.html#avantages" class="hover:text-primary transition">Avantages</a>
+                    <a href="blog.html" class="hover:text-primary transition">Blog</a>
+                    <a href="index.html#carrieres" class="hover:text-primary transition">Carrières</a>
+                    <a href="index.html#contact"
+                        class="bg-primary text-dark-bg px-5 py-2 rounded-full font-semibold hover:bg-primary-dark transition btn-glow">Contact</a>
+                </div>
+                <button id="menuBtn" class="md:hidden text-white"><svg class="w-6 h-6" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg></button>
+            </div>
+            <div id="mobileMenu" class="hidden md:hidden pb-4">
+                <a href="index.html#industries" class="block py-2 hover:text-primary">Industries</a>
+                <button id="mobileExpertiseBtn"
+                    class="w-full flex items-center justify-between py-2 text-primary font-semibold">
+                    <span>Expertise</span>
+                    <svg class="w-4 h-4 transition-transform" id="mobileExpertiseIcon" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div id="mobileExpertiseMenu" class="hidden pl-4 border-l border-primary/20 ml-2 my-2 space-y-1">
+                    <a href="service-ingenierie-ftth.html" class="block py-1.5 text-sm text-gray-400 hover:text-primary">Ingénierie FTTH</a>
+                    <a href="service-analyse-spatiale.html" class="block py-1.5 text-sm text-gray-400 hover:text-primary">Analyse Spatiale</a>
+                    <a href="service-integration-sig.html" class="block py-1.5 text-sm text-gray-400 hover:text-primary">Intégration SIG</a>
+                </div>
+                <button id="mobileServicesBtn"
+                    class="w-full flex items-center justify-between py-2 hover:text-primary">
+                    <span>Services</span>
+                    <svg class="w-4 h-4 transition-transform" id="mobileServicesIcon" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div id="mobileServicesMenu" class="hidden pl-4 border-l border-primary/20 ml-2 my-2 space-y-1">
+                    <a href="service-cartographie.html" class="block py-1.5 text-sm text-gray-400 hover:text-primary">Cartographie</a>
+                    <a href="service-releves-terrain.html" class="block py-1.5 text-sm text-gray-400 hover:text-primary">Relevés Terrain</a>
+                    <a href="service-gestion-donnees.html" class="block py-1.5 text-sm text-gray-400 hover:text-primary">Gestion Données</a>
+                </div>
+                <a href="index.html#avantages" class="block py-2 hover:text-primary">Avantages</a>
+                <a href="blog.html" class="block py-2 hover:text-primary">Blog</a>
+                <a href="index.html#carrieres" class="block py-2 hover:text-primary">Carrières</a>
+                <a href="index.html#contact" class="block py-2 hover:text-primary">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Service Hero -->
+    <div class="relative h-[60vh] w-full overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=1600&h=900&fit=crop" alt="Intégration SIG"
+            class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0B1120]/60 via-[#0B1120]/80 to-[#0B1120]"></div>
+        <div class="absolute bottom-0 left-0 w-full p-8 pb-16">
+            <div class="max-w-5xl mx-auto">
+                <a href="index.html#expertise" class="inline-flex items-center text-primary mb-6 hover:underline transition">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Retour aux services
+                </a>
+                <span class="block text-primary font-semibold tracking-wide uppercase text-sm mb-3">Service Spatial 212</span>
+                <h1 class="font-urbanist font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-tight glow-text">
+                    Intégration SIG
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Content -->
+    <main class="flex-grow py-16">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass rounded-3xl p-8 md:p-12 mb-12">
+                <p class="text-xl text-white font-medium leading-relaxed mb-8">
+                    Spatial 212 conçoit et déploie des solutions SIG sur mesure pour centraliser vos données
+                    géographiques, suivre vos réseaux en temps réel et faciliter la collaboration entre vos
+                    équipes terrain et bureau.
+                </p>
+
+                <h2 class="font-urbanist font-bold text-3xl text-white mt-10 mb-5">Notre vision</h2>
+                <p class="text-gray-400 leading-relaxed mb-6">
+                    Nous croyons qu'un SIG performant doit être à la fois puissant pour les experts et accessible
+                    pour les utilisateurs métier. Nos plateformes intègrent les meilleures briques open source
+                    (QGIS, PostGIS, GeoServer, Leaflet) pour une solution évolutive et libre de droits.
+                </p>
+
+                <h2 class="font-urbanist font-bold text-3xl text-white mt-10 mb-5">Nos prestations</h2>
+                <div class="grid md:grid-cols-2 gap-6 mt-6">
+                    <div class="bg-white/5 p-6 rounded-xl border border-primary/10">
+                        <h3 class="font-urbanist font-bold text-lg text-primary mb-2">SIG WebMapping</h3>
+                        <p class="text-gray-400 text-sm">Portails cartographiques web pour la consultation,
+                            l'édition et la diffusion de données.</p>
+                    </div>
+                    <div class="bg-white/5 p-6 rounded-xl border border-primary/10">
+                        <h3 class="font-urbanist font-bold text-lg text-primary mb-2">Suivi temps réel</h3>
+                        <p class="text-gray-400 text-sm">Tableaux de bord pour suivre l'avancement des travaux,
+                            le statut des équipements et les KPIs réseau.</p>
+                    </div>
+                    <div class="bg-white/5 p-6 rounded-xl border border-primary/10">
+                        <h3 class="font-urbanist font-bold text-lg text-primary mb-2">Mobile collecte</h3>
+                        <p class="text-gray-400 text-sm">Applications terrain synchronisées avec votre SIG
+                            central pour une donnée toujours fraîche.</p>
+                    </div>
+                    <div class="bg-white/5 p-6 rounded-xl border border-primary/10">
+                        <h3 class="font-urbanist font-bold text-lg text-primary mb-2">Intégration métier</h3>
+                        <p class="text-gray-400 text-sm">Connexion de votre SIG à vos ERP, CRM et systèmes de
+                            gestion d'actifs.</p>
+                    </div>
+                </div>
+
+                <h2 class="font-urbanist font-bold text-3xl text-white mt-12 mb-5">Notre stack technologique</h2>
+                <ul class="space-y-3 text-gray-400">
+                    <li class="flex items-start gap-3">
+                        <span class="text-primary mt-1">✓</span>
+                        <span><strong class="text-white">Bases de données :</strong> PostgreSQL/PostGIS, Oracle Spatial.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-primary mt-1">✓</span>
+                        <span><strong class="text-white">Serveurs :</strong> GeoServer, MapServer, QGIS Server.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-primary mt-1">✓</span>
+                        <span><strong class="text-white">Front-end :</strong> Leaflet, OpenLayers, Mapbox GL.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-primary mt-1">✓</span>
+                        <span><strong class="text-white">Mobile :</strong> QField, Mergin Maps, applications custom.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- CTA -->
+            <div class="glass rounded-2xl p-8 md:p-12 text-center glow">
+                <h2 class="font-urbanist font-bold text-3xl text-white mb-4">Centralisez vos <span
+                        class="text-primary">données géographiques</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto mb-8">Découvrez comment un SIG bien intégré peut
+                    transformer la productivité de vos équipes.</p>
+                <a href="index.html#contact"
+                    class="inline-block bg-primary text-dark-bg px-8 py-3 rounded-full font-semibold hover:bg-primary-dark transition btn-glow">Discuter
+                    d'un projet</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark-bg border-t border-gray-800 pt-12 pb-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <a href="index.html" class="font-urbanist font-bold text-2xl text-white block mb-6">Spatial<span
+                            class="text-primary">212</span></a>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Pionniers de l'ingénierie géomatique et des
+                        infrastructures télécoms au Maroc.</p>
+                </div>
+                <div>
+                    <h3 class="font-urbanist font-bold text-lg text-white mb-6">Nos Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="service-cartographie.html" class="text-gray-400 hover:text-primary transition">Cartographie</a></li>
+                        <li><a href="service-releves-terrain.html" class="text-gray-400 hover:text-primary transition">Relevés Terrain</a></li>
+                        <li><a href="service-analyse-spatiale.html" class="text-gray-400 hover:text-primary transition">Analyse Spatiale</a></li>
+                        <li><a href="service-gestion-donnees.html" class="text-gray-400 hover:text-primary transition">Gestion Données</a></li>
+                        <li><a href="service-integration-sig.html" class="text-primary">Intégration SIG</a></li>
+                        <li><a href="service-ingenierie-ftth.html" class="text-gray-400 hover:text-primary transition">Ingénierie FTTH</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-urbanist font-bold text-lg text-white mb-6">Liens Utiles</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 hover:text-primary transition">Accueil</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-primary transition">Blog</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-primary transition">Politique de Confidentialité</a></li>
+                        <li><a href="terms.html" class="text-gray-400 hover:text-primary transition">Conditions Générales</a></li>
+                        <li><a href="legal.html" class="text-gray-400 hover:text-primary transition">Mentions Légales</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-urbanist font-bold text-lg text-white mb-6">Contact</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li>Lun - Ven : 8h30 - 18h00</li>
+                        <li><a href="mailto:contact@spatial212.ma" class="hover:text-primary transition">contact@spatial212.ma</a></li>
+                        <li><a href="tel:+212666636683" class="hover:text-primary transition">0666 63 66 83</a> / <a href="tel:+212611714711" class="hover:text-primary transition">0611 71 47 11</a></li>
+                        <li>Immeuble Omniprise, Av. Al Alaouiyine Rabat, Maroc</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-gray-500 text-sm">© Copyright 2026. All Rights Reserved.</p>
+                <p class="text-gray-500 text-sm">Designed by <span class="text-white">Spatial 212</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+        const mobileServicesBtn = document.getElementById('mobileServicesBtn');
+        const mobileServicesMenu = document.getElementById('mobileServicesMenu');
+        const mobileServicesIcon = document.getElementById('mobileServicesIcon');
+        if (mobileServicesBtn) {
+            mobileServicesBtn.addEventListener('click', () => {
+                mobileServicesMenu.classList.toggle('hidden');
+                mobileServicesIcon.classList.toggle('rotate-180');
+            });
+        }
+
+        const mobileExpertiseBtn = document.getElementById('mobileExpertiseBtn');
+        const mobileExpertiseMenu = document.getElementById('mobileExpertiseMenu');
+        const mobileExpertiseIcon = document.getElementById('mobileExpertiseIcon');
+        if (mobileExpertiseBtn) {
+            mobileExpertiseBtn.addEventListener('click', () => {
+                mobileExpertiseMenu.classList.toggle('hidden');
+                mobileExpertiseIcon.classList.toggle('rotate-180');
+            });
+        }
+    </script>
+</body>
+
+</html>

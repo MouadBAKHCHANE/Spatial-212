@@ -123,6 +123,45 @@
         .animate-marquee-vertical:hover {
             animation-play-state: paused;
         }
+
+        /* Services dropdown */
+        .nav-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(8px);
+            min-width: 260px;
+            background: rgba(11, 17, 32, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 255, 157, 0.15);
+            border-radius: 1rem;
+            padding: 0.75rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s ease;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-dropdown-trigger:hover .nav-dropdown,
+        .nav-dropdown:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .nav-dropdown a {
+            display: block;
+            padding: 0.6rem 0.9rem;
+            border-radius: 0.5rem;
+            color: #d1d5db;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+
+        .nav-dropdown a:hover {
+            background: rgba(0, 255, 157, 0.08);
+            color: #00ff9d;
+        }
     </style>
 </head>
 
@@ -134,8 +173,34 @@
             <div class="flex items-center justify-between h-16">
                 <a href="#" class="font-urbanist font-bold text-2xl text-white">Spatial<span
                         class="text-primary">212</span></a>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#expertise" class="hover:text-primary transition">Expertise</a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#industries" class="hover:text-primary transition">Industries</a>
+                    <div class="relative nav-dropdown-trigger">
+                        <a href="#expertise" class="hover:text-primary transition flex items-center gap-1">Expertise
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </a>
+                        <div class="nav-dropdown">
+                            <a href="service-ingenierie-ftth.html">Ingénierie FTTH</a>
+                            <a href="service-analyse-spatiale.html">Analyse Spatiale</a>
+                            <a href="service-integration-sig.html">Intégration SIG</a>
+                        </div>
+                    </div>
+                    <div class="relative nav-dropdown-trigger">
+                        <a href="#services" class="hover:text-primary transition flex items-center gap-1">Services
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </a>
+                        <div class="nav-dropdown">
+                            <a href="service-cartographie.html">Cartographie</a>
+                            <a href="service-releves-terrain.html">Relevés Terrain</a>
+                            <a href="service-gestion-donnees.html">Gestion Données</a>
+                        </div>
+                    </div>
                     <a href="#avantages" class="hover:text-primary transition">Avantages</a>
                     <a href="#blog" class="hover:text-primary transition">Blog</a>
                     <a href="#carrieres" class="hover:text-primary transition">Carrières</a>
@@ -149,7 +214,33 @@
                     </svg></button>
             </div>
             <div id="mobileMenu" class="hidden md:hidden pb-4">
-                <a href="#expertise" class="block py-2 hover:text-primary">Expertise</a>
+                <a href="#industries" class="block py-2 hover:text-primary">Industries</a>
+                <button id="mobileExpertiseBtn"
+                    class="w-full flex items-center justify-between py-2 hover:text-primary">
+                    <span>Expertise</span>
+                    <svg class="w-4 h-4 transition-transform" id="mobileExpertiseIcon" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div id="mobileExpertiseMenu" class="hidden pl-4 border-l border-primary/20 ml-2 my-2 space-y-1">
+                    <a href="service-ingenierie-ftth.html" class="block py-1.5 text-sm text-gray-400 hover:text-primary">Ingénierie FTTH</a>
+                    <a href="service-analyse-spatiale.html" class="block py-1.5 text-sm text-gray-400 hover:text-primary">Analyse Spatiale</a>
+                    <a href="service-integration-sig.html" class="block py-1.5 text-sm text-gray-400 hover:text-primary">Intégration SIG</a>
+                </div>
+                <button id="mobileServicesBtn"
+                    class="w-full flex items-center justify-between py-2 hover:text-primary">
+                    <span>Services</span>
+                    <svg class="w-4 h-4 transition-transform" id="mobileServicesIcon" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div id="mobileServicesMenu" class="hidden pl-4 border-l border-primary/20 ml-2 my-2 space-y-1">
+                    <a href="service-cartographie.html" class="block py-1.5 text-sm text-gray-400 hover:text-primary">Cartographie</a>
+                    <a href="service-releves-terrain.html" class="block py-1.5 text-sm text-gray-400 hover:text-primary">Relevés Terrain</a>
+                    <a href="service-gestion-donnees.html" class="block py-1.5 text-sm text-gray-400 hover:text-primary">Gestion Données</a>
+                </div>
                 <a href="#avantages" class="block py-2 hover:text-primary">Avantages</a>
                 <a href="#blog" class="block py-2 hover:text-primary">Blog</a>
                 <a href="#carrieres" class="block py-2 hover:text-primary">Carrières</a>
@@ -167,19 +258,111 @@
         </video>
         <div class="video-overlay"></div>
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 text-center">
+            <span
+                class="inline-block text-primary font-semibold tracking-wider uppercase text-xs md:text-sm mb-6 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/5">
+                Notre activité principale
+            </span>
             <h1 class="font-urbanist font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-6">
-                Ingénierie <span class="text-primary glow-text">Géomatique</span> & Infrastructures Télécoms
+                Ingénierie <span class="text-primary glow-text">Géomatique</span>
             </h1>
             <p class="text-lg text-gray-400 mb-8 leading-relaxed max-w-2xl mx-auto">
+                Au service des infrastructures télécoms, de l'énergie et de l'aménagement du territoire au Maroc.
                 Une expertise ancrée dans la technologie de pointe et la précision géographique.
             </p>
             <div class="flex flex-wrap gap-4 justify-center">
-                <a href="#expertise"
+                <a href="#services"
                     class="bg-primary text-dark-bg px-8 py-3 rounded-full font-semibold hover:bg-primary-dark transition btn-glow">Nos
                     Services</a>
-                <a href="#contact"
-                    class="border border-primary text-primary px-8 py-3 rounded-full font-semibold hover:bg-primary hover:text-dark-bg transition">Nous
-                    Contacter</a>
+                <a href="#expertise"
+                    class="border border-primary text-primary px-8 py-3 rounded-full font-semibold hover:bg-primary hover:text-dark-bg transition">Notre
+                    Expertise</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries -->
+    <section id="industries" class="py-20 gradient-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Industries</span>
+                <h2 class="font-urbanist font-bold text-3xl md:text-4xl text-white mb-4">Les <span
+                        class="text-primary">industries</span> que nous servons</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Notre savoir-faire géomatique s'applique à de nombreux
+                    secteurs stratégiques au Maroc.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Industry 1: Télécommunications -->
+                <div class="glass rounded-2xl p-6 card-hover group">
+                    <div
+                        class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <img src="https://img.icons8.com/3d-fluency/94/wifi.png" alt="Télécommunications"
+                            class="w-9 h-9 object-contain">
+                    </div>
+                    <h3 class="font-urbanist font-bold text-lg text-white mb-2 group-hover:text-primary transition-colors">
+                        Télécommunications</h3>
+                    <p class="text-gray-400 text-sm">Déploiement FTTH, 5G, audit d'infrastructures et études
+                        d'ingénierie pour les opérateurs et bureaux d'études.</p>
+                </div>
+                <!-- Industry 2: Énergie & Utilities -->
+                <div class="glass rounded-2xl p-6 card-hover group">
+                    <div
+                        class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <img src="https://img.icons8.com/3d-fluency/94/lightning-bolt.png" alt="Énergie"
+                            class="w-9 h-9 object-contain">
+                    </div>
+                    <h3 class="font-urbanist font-bold text-lg text-white mb-2 group-hover:text-primary transition-colors">
+                        Énergie & Utilities</h3>
+                    <p class="text-gray-400 text-sm">Cartographie de réseaux électriques, gaz et eau ; optimisation
+                        des tracés et gestion patrimoniale des actifs.</p>
+                </div>
+                <!-- Industry 3: Aménagement du territoire -->
+                <div class="glass rounded-2xl p-6 card-hover group">
+                    <div
+                        class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <img src="https://img.icons8.com/3d-fluency/94/city-buildings.png"
+                            alt="Aménagement urbain" class="w-9 h-9 object-contain">
+                    </div>
+                    <h3 class="font-urbanist font-bold text-lg text-white mb-2 group-hover:text-primary transition-colors">
+                        Aménagement & Urbanisme</h3>
+                    <p class="text-gray-400 text-sm">Plans d'aménagement, études d'impact, modélisation 3D et
+                        accompagnement des collectivités territoriales.</p>
+                </div>
+                <!-- Industry 4: Transport & Mobilité -->
+                <div class="glass rounded-2xl p-6 card-hover group">
+                    <div
+                        class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <img src="https://img.icons8.com/3d-fluency/94/traffic-light.png"
+                            alt="Transport" class="w-9 h-9 object-contain">
+                    </div>
+                    <h3 class="font-urbanist font-bold text-lg text-white mb-2 group-hover:text-primary transition-colors">
+                        Transport & Mobilité</h3>
+                    <p class="text-gray-400 text-sm">Études d'infrastructures routières, ferroviaires et logistiques
+                        ; analyses de flux et optimisation de tournées.</p>
+                </div>
+                <!-- Industry 5: BTP & Génie Civil -->
+                <div class="glass rounded-2xl p-6 card-hover group">
+                    <div
+                        class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <img src="https://img.icons8.com/3d-fluency/94/under-construction.png" alt="BTP"
+                            class="w-9 h-9 object-contain">
+                    </div>
+                    <h3 class="font-urbanist font-bold text-lg text-white mb-2 group-hover:text-primary transition-colors">
+                        BTP & Génie Civil</h3>
+                    <p class="text-gray-400 text-sm">Levés topographiques de précision, modèles numériques de
+                        terrain et suivi de chantier pour les acteurs du BTP.</p>
+                </div>
+                <!-- Industry 6: Cadastre & Foncier -->
+                <div class="glass rounded-2xl p-6 card-hover group">
+                    <div
+                        class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <img src="https://img.icons8.com/3d-fluency/94/treaty.png" alt="Cadastre"
+                            class="w-9 h-9 object-contain">
+                    </div>
+                    <h3 class="font-urbanist font-bold text-lg text-white mb-2 group-hover:text-primary transition-colors">
+                        Cadastre & Foncier</h3>
+                    <p class="text-gray-400 text-sm">Numérisation et structuration de plans cadastraux, gestion du
+                        foncier et appui aux administrations publiques.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -187,98 +370,159 @@
     <!-- Expertise -->
     <section id="expertise" class="py-20 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-16 items-start">
-                <!-- Left Column: Text Content -->
-                <div class="text-left relative z-10 lg:sticky lg:top-32 lg:h-fit">
-                    <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Nos Services</span>
-                    <h3 class="font-urbanist font-bold text-xl text-white mb-4 uppercase leading-tight">ÉTUDES DE
-                        TÉLÉCOMMUNICATIONS<br>& RÉSEAUX FIBRES OPTIQUES</h3>
-                    <p class="text-gray-400 text-lg leading-relaxed mb-8">De la planification et dimensionnement jusqu'à
-                        la modélisation de réseaux FTTH, selon les normes les plus rigoureuses du secteur.</p>
-                    <a href="#contact"
-                        class="inline-flex items-center text-primary font-semibold hover:tracking-wide transition-all group">
-                        Démarrer un projet
-                        <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
+            <div class="text-center mb-16">
+                <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Notre Expertise</span>
+                <h2 class="font-urbanist font-bold text-3xl md:text-4xl text-white mb-4">Le cœur <span
+                        class="text-primary">technique</span> de Spatial 212</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Nos spécialités techniques pointues, fruit d'années
+                    d'expérience sur des projets d'infrastructures stratégiques.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Expertise 1: Ingénierie FTTH -->
+                <div class="glass rounded-2xl p-8 card-hover group glow">
+                    <div
+                        class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <img src="https://img.icons8.com/3d-fluency/94/network-cable.png" alt="FTTH"
+                            class="w-10 h-10 object-contain">
+                    </div>
+                    <h3 class="font-urbanist font-bold text-xl text-white mb-3 group-hover:text-primary transition-colors">
+                        Ingénierie FTTH</h3>
+                    <p class="text-gray-400 text-sm mb-5">Conception de réseaux fibre sur mesure, de la faisabilité
+                        aux plans d'exécution selon les normes les plus rigoureuses.</p>
+                    <a href="service-ingenierie-ftth.html"
+                        class="inline-flex items-center text-primary text-sm font-semibold hover:tracking-wide transition-all">
+                        Découvrir
+                        <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                         </svg>
                     </a>
                 </div>
-
-                <!-- Right Column: Scrolling Cards -->
-                <!-- Right Column: Static Cards -->
-                <div class="grid grid-cols-1 gap-6">
-                    <!-- Card 1 -->
-                    <div class="glass rounded-2xl p-6 card-hover group sticky top-24 z-10">
-                        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
-                            <img src="https://img.icons8.com/3d-fluency/94/map-marker.png" alt="Cartographie"
-                                class="w-8 h-8 object-contain">
-                        </div>
-                        <h3 class="font-urbanist font-bold text-lg text-white mb-2">Cartographie</h3>
-                        <p class="text-gray-400 text-sm">Cartes précises et personnalisées, adaptées aux
-                            exigences de chaque projet.</p>
+                <!-- Expertise 2: Analyse Spatiale -->
+                <div class="glass rounded-2xl p-8 card-hover group glow">
+                    <div
+                        class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <img src="https://img.icons8.com/3d-fluency/94/bar-chart.png" alt="Analyse"
+                            class="w-10 h-10 object-contain">
                     </div>
-                    <!-- Card 2 -->
-                    <div class="glass rounded-2xl p-6 card-hover group sticky top-28 z-20">
-                        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
-                            <img src="https://img.icons8.com/3d-fluency/94/ruler.png" alt="Relevés"
-                                class="w-8 h-8 object-contain">
-                        </div>
-                        <h3 class="font-urbanist font-bold text-lg text-white mb-2">Relevés Terrain</h3>
-                        <p class="text-gray-400 text-sm">Relevés topographiques et techniques fiables par GPS,
-                            tablettes et drones.</p>
+                    <h3 class="font-urbanist font-bold text-xl text-white mb-3 group-hover:text-primary transition-colors">
+                        Analyse Spatiale</h3>
+                    <p class="text-gray-400 text-sm mb-5">Extraction d'informations stratégiques par croisement de
+                        couches géographiques, modélisation prédictive et optimisation de réseaux.</p>
+                    <a href="service-analyse-spatiale.html"
+                        class="inline-flex items-center text-primary text-sm font-semibold hover:tracking-wide transition-all">
+                        Découvrir
+                        <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
+                </div>
+                <!-- Expertise 3: Intégration SIG -->
+                <div class="glass rounded-2xl p-8 card-hover group glow">
+                    <div
+                        class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <img src="https://img.icons8.com/3d-fluency/94/layers.png" alt="SIG"
+                            class="w-10 h-10 object-contain">
                     </div>
-                    <!-- Card 3 -->
-                    <div class="glass rounded-2xl p-6 card-hover group sticky top-32 z-30">
-                        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
-                            <img src="https://img.icons8.com/3d-fluency/94/bar-chart.png" alt="Analyse"
-                                class="w-8 h-8 object-contain">
-                        </div>
-                        <h3 class="font-urbanist font-bold text-lg text-white mb-2">Analyse Spatiale</h3>
-                        <p class="text-gray-400 text-sm">Extraction d'informations stratégiques pour une aide à
-                            la décision optimisée.</p>
-                    </div>
-                    <!-- Card 4 -->
-                    <div class="glass rounded-2xl p-6 card-hover group sticky top-36 z-40">
-                        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
-                            <img src="https://img.icons8.com/3d-fluency/94/database.png" alt="Data"
-                                class="w-8 h-8 object-contain">
-                        </div>
-                        <h3 class="font-urbanist font-bold text-lg text-white mb-2">Gestion Données</h3>
-                        <p class="text-gray-400 text-sm">Organisation, structuration et mise en qualité de vos
-                            bases de données géographiques.</p>
-                    </div>
-                    <!-- Card 5 -->
-                    <div class="glass rounded-2xl p-6 card-hover group sticky top-40 z-50">
-                        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
-                            <img src="https://img.icons8.com/3d-fluency/94/layers.png" alt="SIG"
-                                class="w-8 h-8 object-contain">
-                        </div>
-                        <h3 class="font-urbanist font-bold text-lg text-white mb-2">Intégration SIG</h3>
-                        <p class="text-gray-400 text-sm">Solutions pour centraliser les données et suivre les
-                            réseaux en temps réel.</p>
-                    </div>
-                    <!-- Card 6 -->
-                    <div class="glass rounded-2xl p-6 card-hover group sticky top-44 z-[60]">
-                        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
-                            <img src="https://img.icons8.com/3d-fluency/94/network-cable.png" alt="FTTH"
-                                class="w-8 h-8 object-contain">
-                        </div>
-                        <h3 class="font-urbanist font-bold text-lg text-white mb-2">Ingénierie FTTH</h3>
-                        <p class="text-gray-400 text-sm mb-3">Conception de réseaux fibre sur mesure, de la
-                            faisabilité aux plans d'exécution.</p>
-                        <ul class="text-gray-400 text-sm space-y-1 list-disc list-inside bg-white/5 p-3 rounded-lg">
-                            <li>Mise à jour Shapes NETGEO</li>
-                            <li>Numérisation des plans réseaux RTC</li>
-                            <li>APS (Avant-Projet Sommaire)</li>
-                            <li>APD (Avant-Projet Détaillé)</li>
-                        </ul>
-                    </div>
+                    <h3 class="font-urbanist font-bold text-xl text-white mb-3 group-hover:text-primary transition-colors">
+                        Intégration SIG</h3>
+                    <p class="text-gray-400 text-sm mb-5">Plateformes SIG sur mesure (PostGIS, GeoServer, Leaflet)
+                        pour centraliser, suivre et exploiter vos données géographiques en temps réel.</p>
+                    <a href="service-integration-sig.html"
+                        class="inline-flex items-center text-primary text-sm font-semibold hover:tracking-wide transition-all">
+                        Découvrir
+                        <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Services -->
+    <section id="services" class="py-20 gradient-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Nos Services</span>
+                <h2 class="font-urbanist font-bold text-3xl md:text-4xl text-white mb-4">La <span
+                        class="text-primary">livraison opérationnelle</span> de vos projets</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">De la collecte sur le terrain à la mise en qualité de vos
+                    bases de données, nos services couvrent toute la chaîne géomatique.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1: Cartographie -->
+                <div class="glass rounded-2xl p-8 card-hover group">
+                    <div
+                        class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <img src="https://img.icons8.com/3d-fluency/94/map-marker.png" alt="Cartographie"
+                            class="w-10 h-10 object-contain">
+                    </div>
+                    <h3 class="font-urbanist font-bold text-xl text-white mb-3 group-hover:text-primary transition-colors">
+                        Cartographie</h3>
+                    <p class="text-gray-400 text-sm mb-5">Cartes précises et personnalisées, adaptées aux exigences
+                        de chaque projet — thématiques, techniques ou interactives.</p>
+                    <a href="service-cartographie.html"
+                        class="inline-flex items-center text-primary text-sm font-semibold hover:tracking-wide transition-all">
+                        Découvrir
+                        <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
+                </div>
+                <!-- Service 2: Relevés Terrain -->
+                <div class="glass rounded-2xl p-8 card-hover group">
+                    <div
+                        class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <img src="https://img.icons8.com/3d-fluency/94/ruler.png" alt="Relevés"
+                            class="w-10 h-10 object-contain">
+                    </div>
+                    <h3 class="font-urbanist font-bold text-xl text-white mb-3 group-hover:text-primary transition-colors">
+                        Relevés Terrain</h3>
+                    <p class="text-gray-400 text-sm mb-5">Relevés topographiques et techniques fiables par GPS RTK,
+                        tablettes connectées et drones photogrammétriques.</p>
+                    <a href="service-releves-terrain.html"
+                        class="inline-flex items-center text-primary text-sm font-semibold hover:tracking-wide transition-all">
+                        Découvrir
+                        <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
+                </div>
+                <!-- Service 3: Gestion Données -->
+                <div class="glass rounded-2xl p-8 card-hover group">
+                    <div
+                        class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <img src="https://img.icons8.com/3d-fluency/94/database.png" alt="Data"
+                            class="w-10 h-10 object-contain">
+                    </div>
+                    <h3 class="font-urbanist font-bold text-xl text-white mb-3 group-hover:text-primary transition-colors">
+                        Gestion Données</h3>
+                    <p class="text-gray-400 text-sm mb-5">Organisation, structuration et mise en qualité de vos
+                        bases de données géographiques pour qu'elles deviennent un véritable actif.</p>
+                    <a href="service-gestion-donnees.html"
+                        class="inline-flex items-center text-primary text-sm font-semibold hover:tracking-wide transition-all">
+                        Découvrir
+                        <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
 
     <!-- Avantages -->
@@ -451,6 +695,22 @@
                             <div>
                                 <p class="text-white font-semibold">Email</p>
                                 <p class="text-gray-400">contact@spatial212.ma</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-white font-semibold">Téléphone</p>
+                                <p class="text-gray-400">
+                                    <a href="tel:+212666636683" class="hover:text-primary transition">0666 63 66 83</a>
+                                    <span class="mx-1">/</span>
+                                    <a href="tel:+212611714711" class="hover:text-primary transition">0611 71 47 11</a>
+                                </p>
                             </div>
                         </div>
 
@@ -640,7 +900,10 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                 </svg>
-                                <a href="tel:+212537000000" class="hover:text-primary transition">+212 5 37 00 00 00</a>
+                                <div class="flex flex-col">
+                                    <a href="tel:+212666636683" class="hover:text-primary transition">0666 63 66 83</a>
+                                    <a href="tel:+212611714711" class="hover:text-primary transition">0611 71 47 11</a>
+                                </div>
                             </li>
                             <li class="flex items-start gap-3">
                                 <svg class="w-5 h-5 text-primary mt-1 shrink-0" fill="none" stroke="currentColor"
@@ -677,6 +940,27 @@
         const menuBtn = document.getElementById('menuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+        const mobileServicesBtn = document.getElementById('mobileServicesBtn');
+        const mobileServicesMenu = document.getElementById('mobileServicesMenu');
+        const mobileServicesIcon = document.getElementById('mobileServicesIcon');
+        if (mobileServicesBtn) {
+            mobileServicesBtn.addEventListener('click', () => {
+                mobileServicesMenu.classList.toggle('hidden');
+                mobileServicesIcon.classList.toggle('rotate-180');
+            });
+        }
+
+        const mobileExpertiseBtn = document.getElementById('mobileExpertiseBtn');
+        const mobileExpertiseMenu = document.getElementById('mobileExpertiseMenu');
+        const mobileExpertiseIcon = document.getElementById('mobileExpertiseIcon');
+        if (mobileExpertiseBtn) {
+            mobileExpertiseBtn.addEventListener('click', () => {
+                mobileExpertiseMenu.classList.toggle('hidden');
+                mobileExpertiseIcon.classList.toggle('rotate-180');
+            });
+        }
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();

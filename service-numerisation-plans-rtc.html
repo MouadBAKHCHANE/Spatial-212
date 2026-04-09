@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numérisation des Plans Réseaux RTC | Spatial 212</title>
+    <meta name="description"
+        content="Spatial 212 transforme vos plans réseaux RTC en bases SIG vectorielles haute précision : ingénierie de données géospatiales pour FTTH et 5G.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Urbanist:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00ff9d',
+                        'primary-dark': '#00cc7d',
+                        'dark-bg': '#0B1120',
+                        'dark-card': '#111827',
+                        'dark-border': '#1f2937'
+                    },
+                    fontFamily: {
+                        urbanist: ['Urbanist', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B1120;
+        }
+
+        .font-urbanist {
+            font-family: 'Urbanist', sans-serif;
+        }
+
+        .glass {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 255, 157, 0.1);
+        }
+
+        .glow {
+            box-shadow: 0 0 40px rgba(0, 255, 157, 0.15);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 30px rgba(0, 255, 157, 0.5);
+        }
+
+        .gradient-bg {
+            background: radial-gradient(ellipse at top, rgba(0, 255, 157, 0.1) 0%, transparent 50%);
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 25px rgba(0, 255, 157, 0.4);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 157, 0.3);
+        }
+
+        /* Dropdown */
+        .nav-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(8px);
+            min-width: 260px;
+            background: rgba(11, 17, 32, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 255, 157, 0.15);
+            border-radius: 1rem;
+            padding: 0.75rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s ease;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-dropdown-trigger:hover .nav-dropdown,
+        .nav-dropdown:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .nav-dropdown a {
+            display: block;
+            padding: 0.6rem 0.9rem;
+            border-radius: 0.5rem;
+            color: #d1d5db;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+
+        .nav-dropdown a:hover {
+            background: rgba(0, 255, 157, 0.08);
+            color: #00ff9d;
+        }
+    </style>
+</head>
+
+<body class="text-gray-300 antialiased flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50"
+        style="background: rgba(11, 17, 32, 0.3); backdrop-filter: blur(8px);">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="font-urbanist font-bold text-2xl text-white">Spatial<span
+                        class="text-primary">212</span></a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html#industries" class="hover:text-primary transition">Industries</a>
+                    <div class="relative nav-dropdown-trigger">
+                        <a href="index.html#expertise"
+                            class="text-primary transition font-semibold flex items-center gap-1">Expertise
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </a>
+                        <div class="nav-dropdown">
+                            <a href="service-ingenierie-ftth.html">Ingénierie FTTH</a>
+                            <a href="service-analyse-spatiale.html">Analyse Spatiale</a>
+                            <a href="service-integration-sig.html">Intégration SIG</a>
+                        </div>
+                    </div>
+                    <div class="relative nav-dropdown-trigger">
+                        <a href="index.html#services"
+                            class="hover:text-primary transition flex items-center gap-1">Services
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </a>
+                        <div class="nav-dropdown">
+                            <a href="service-cartographie.html">Cartographie</a>
+                            <a href="service-releves-terrain.html">Relevés Terrain</a>
+                            <a href="service-gestion-donnees.html">Gestion Données</a>
+                        </div>
+                    </div>
+                    <a href="index.html#avantages" class="hover:text-primary transition">Avantages</a>
+                    <a href="blog.html" class="hover:text-primary transition">Blog</a>
+                    <a href="index.html#carrieres" class="hover:text-primary transition">Carrières</a>
+                    <a href="index.html#contact"
+                        class="bg-primary text-dark-bg px-5 py-2 rounded-full font-semibold hover:bg-primary-dark transition btn-glow">Contact</a>
+                </div>
+                <button id="menuBtn" class="md:hidden text-white"><svg class="w-6 h-6" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg></button>
+            </div>
+            <div id="mobileMenu" class="hidden md:hidden pb-4">
+                <a href="index.html#industries" class="block py-2 hover:text-primary">Industries</a>
+                <button id="mobileExpertiseBtn"
+                    class="w-full flex items-center justify-between py-2 text-primary font-semibold">
+                    <span>Expertise</span>
+                    <svg class="w-4 h-4 transition-transform" id="mobileExpertiseIcon" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div id="mobileExpertiseMenu" class="hidden pl-4 border-l border-primary/20 ml-2 my-2 space-y-1">
+                    <a href="service-ingenierie-ftth.html"
+                        class="block py-1.5 text-sm text-gray-400 hover:text-primary">Ingénierie FTTH</a>
+                    <a href="service-analyse-spatiale.html"
+                        class="block py-1.5 text-sm text-gray-400 hover:text-primary">Analyse Spatiale</a>
+                    <a href="service-integration-sig.html"
+                        class="block py-1.5 text-sm text-gray-400 hover:text-primary">Intégration SIG</a>
+                </div>
+                <button id="mobileServicesBtn" class="w-full flex items-center justify-between py-2 hover:text-primary">
+                    <span>Services</span>
+                    <svg class="w-4 h-4 transition-transform" id="mobileServicesIcon" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div id="mobileServicesMenu" class="hidden pl-4 border-l border-primary/20 ml-2 my-2 space-y-1">
+                    <a href="service-cartographie.html"
+                        class="block py-1.5 text-sm text-gray-400 hover:text-primary">Cartographie</a>
+                    <a href="service-releves-terrain.html"
+                        class="block py-1.5 text-sm text-gray-400 hover:text-primary">Relevés Terrain</a>
+                    <a href="service-gestion-donnees.html"
+                        class="block py-1.5 text-sm text-gray-400 hover:text-primary">Gestion Données</a>
+                </div>
+                <a href="index.html#avantages" class="block py-2 hover:text-primary">Avantages</a>
+                <a href="blog.html" class="block py-2 hover:text-primary">Blog</a>
+                <a href="index.html#carrieres" class="block py-2 hover:text-primary">Carrières</a>
+                <a href="index.html#contact" class="block py-2 hover:text-primary">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Service Hero -->
+    <div class="relative h-[60vh] w-full overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1600&h=900&fit=crop"
+            alt="Numérisation plans RTC" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0B1120]/60 via-[#0B1120]/80 to-[#0B1120]"></div>
+        <div class="absolute bottom-0 left-0 w-full p-8 pb-16">
+            <div class="max-w-5xl mx-auto">
+                <a href="service-ingenierie-ftth.html"
+                    class="inline-flex items-center text-primary mb-6 hover:underline transition">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Retour à Ingénierie FTTH
+                </a>
+                <span class="block text-primary font-semibold tracking-wide uppercase text-sm mb-3">Expertise Spatial
+                    212</span>
+                <h1 class="font-urbanist font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-tight glow-text">
+                    Numérisation des Plans Réseaux RTC
+                </h1>
+                <p class="text-lg text-gray-300 mt-4 max-w-3xl">De l'archive papier à l'intelligence territoriale.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Content -->
+    <main class="flex-grow py-16">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Vision -->
+            <div class="glass rounded-3xl p-8 md:p-12 mb-10">
+                <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Notre Expertise</span>
+                <h2 class="font-urbanist font-bold text-3xl md:text-4xl text-white mb-6">
+                    Ingénierie de Données <span class="text-primary">Géospatiales</span>
+                </h2>
+                <p class="text-xl text-white font-medium leading-relaxed mb-6">
+                    Valorisation du patrimoine réseau : de l'archive à l'intelligence territoriale.
+                </p>
+
+                <h3 class="font-urbanist font-bold text-2xl text-white mt-10 mb-4">La Vision</h3>
+                <p class="text-gray-400 leading-relaxed mb-4">
+                    Dans un contexte de déploiement accéléré des infrastructures fibre (FTTH) et 5G au Maroc, la
+                    donnée géographique est devenue l'actif le plus précieux des opérateurs et des bureaux d'études.
+                    Pourtant, une grande partie de cette connaissance reste piégée dans des archives physiques ou
+                    des formats statiques difficiles à exploiter.
+                </p>
+                <p class="text-gray-400 leading-relaxed">
+                    Notre mission est de transformer ce patrimoine documentaire en un système d'information
+                    géographique (SIG) dynamique, précis et immédiatement exploitable pour vos prises de décision
+                    stratégiques.
+                </p>
+            </div>
+
+            <!-- Notre Expertise -->
+            <div class="glass rounded-3xl p-8 md:p-12 mb-10">
+                <h3 class="font-urbanist font-bold text-2xl md:text-3xl text-white mb-4">Notre Expertise</h3>
+                <p class="text-gray-400 leading-relaxed mb-8">
+                    Nous intervenons sur la chaîne de valeur complète de la donnée, avec une exigence de précision
+                    chirurgicale :
+                </p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Restructuration -->
+                    <div class="bg-white/5 p-8 rounded-xl border border-primary/10 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(0,255,157,0.15)] card-hover group relative overflow-hidden reveal-card min-h-[160px] flex items-center">
+                        <!-- Decorative Pop-up Background Icon (Becomes colored on hover) -->
+                        <img src="assets/img/icon-restructuration.png" alt="" 
+                            class="absolute -top-4 -right-4 w-40 h-40 opacity-[0.2] brightness-110 group-hover:opacity-60 group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none rotate-12">
+                        
+                        <div class="relative z-10 pr-12">
+                            <h4 class="font-urbanist font-bold text-xl text-primary mb-3 group-hover:text-white transition-colors">Restructuration de données complexes</h4>
+                            <p class="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">Traitement des plans réseaux dégradés ou anciens pour en extraire une structure propre.</p>
+                        </div>
+                    </div>
+
+                    <!-- Vectorisation -->
+                    <div class="bg-white/5 p-8 rounded-xl border border-primary/10 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(0,255,157,0.15)] card-hover group relative overflow-hidden reveal-card min-h-[160px] flex items-center">
+                        <img src="assets/img/icon-vectorisation.png" alt="" 
+                            class="absolute -top-4 -right-4 w-40 h-40 opacity-[0.2] brightness-110 group-hover:opacity-60 group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none rotate-12">
+                        
+                        <div class="relative z-10 pr-12">
+                            <h4 class="font-urbanist font-bold text-xl text-primary mb-3 group-hover:text-white transition-colors">Vectorisation Haute Précision</h4>
+                            <p class="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">Conversion de vos actifs en formats vectoriels standards.</p>
+                        </div>
+                    </div>
+
+                    <!-- Structuration -->
+                    <div class="bg-white/5 p-8 rounded-xl border border-primary/10 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(0,255,157,0.15)] card-hover group relative overflow-hidden reveal-card min-h-[160px] flex items-center">
+                        <img src="assets/img/icon-structuration.png" alt="" 
+                            class="absolute -top-4 -right-4 w-40 h-40 opacity-[0.2] brightness-110 group-hover:opacity-60 group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none rotate-12">
+                        
+                        <div class="relative z-10 pr-12">
+                            <h4 class="font-urbanist font-bold text-xl text-primary mb-3 group-hover:text-white transition-colors">Structuration d'Attributs</h4>
+                            <p class="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">Indexation et liaison des informations techniques directement aux objets géographiques.</p>
+                        </div>
+                    </div>
+
+                    <!-- Integration SIG -->
+                    <div class="bg-white/5 p-8 rounded-xl border border-primary/10 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(0,255,157,0.15)] card-hover group relative overflow-hidden reveal-card min-h-[160px] flex items-center">
+                        <img src="assets/img/icon-sig.png" alt="" 
+                            class="absolute -top-4 -right-4 w-40 h-40 opacity-[0.2] brightness-110 group-hover:opacity-60 group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none rotate-12">
+                        
+                        <div class="relative z-10 pr-12">
+                            <h4 class="font-urbanist font-bold text-xl text-primary mb-3 group-hover:text-white transition-colors">Intégration SIG</h4>
+                            <p class="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">Transposition des données nettoyées dans votre environnement SIG compatible outils métiers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Before / After Transformation -->
+            <div class="glass rounded-3xl p-8 md:p-12 mb-10">
+                <div class="text-center mb-10">
+                    <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">La
+                        transformation</span>
+                    <h3 class="font-urbanist font-bold text-2xl md:text-3xl text-white mb-3">
+                        Du <span class="line-through text-gray-500">plan papier rouillé</span> au <span
+                            class="text-primary">SIG vectoriel</span>
+                    </h3>
+                    <p class="text-gray-400 max-w-2xl mx-auto">Voyez par vous-même la métamorphose de vos archives en
+                        données géographiques structurées, prêtes à être exploitées dans Esri ArcGIS ou QGIS.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 relative">
+                    <!-- BEFORE -->
+                    <div class="relative">
+                        <span
+                            class="absolute top-4 left-4 z-10 bg-red-500/20 border border-red-500/40 text-red-300 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full backdrop-blur">Avant</span>
+                        <div
+                            class="rounded-2xl overflow-hidden border border-white/10 aspect-[4/3] relative bg-amber-900/20">
+                            <img src="assets/img/plan-rtc-before.png" alt="Plan papier ancien"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div class="mt-5 space-y-2 text-sm text-gray-400">
+                            <div class="flex items-center gap-2"><span class="text-red-400 font-bold">✗</span>
+                                Plan papier dégradé ou scanné</div>
+                            <div class="flex items-center gap-2"><span class="text-red-400 font-bold">✗</span>
+                                Aucune information attributaire</div>
+                            <div class="flex items-center gap-2"><span class="text-red-400 font-bold">✗</span>
+                                Non exploitable en analyse spatiale</div>
+                        </div>
+                    </div>
+
+                    <!-- Arrow between (desktop only) -->
+                    <div
+                        class="hidden md:flex absolute left-1/2 top-[33%] -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
+                        <div
+                            class="w-14 h-14 rounded-full bg-primary text-dark-bg flex items-center justify-center shadow-lg shadow-primary/40">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- AFTER -->
+                    <div class="relative">
+                        <span
+                            class="absolute top-4 left-4 z-10 bg-primary/20 border border-primary/40 text-primary text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full backdrop-blur">Après</span>
+                        <div class="rounded-2xl overflow-hidden border border-primary/30 aspect-[4/3] glow">
+                            <img src="assets/img/sig-after.png" alt="SIG vectoriel Esri ArcGIS QGIS"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div class="mt-5 space-y-2 text-sm text-gray-400">
+                            <div class="flex items-center gap-2"><span class="text-primary font-bold">✓</span>
+                                Vecteurs haute précision géoréférencés</div>
+                            <div class="flex items-center gap-2"><span class="text-primary font-bold">✓</span>
+                                Attributs métiers liés à chaque objet</div>
+                            <div class="flex items-center gap-2"><span class="text-primary font-bold">✓</span>
+                                Exploitable dans tous les SIG du marché</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Compatible formats -->
+                <div class="mt-10 pt-8 border-t border-white/10">
+                    <p class="text-center text-xs uppercase tracking-wider text-gray-500 mb-5">Compatible avec vos
+                        outils métiers</p>
+                    <div class="flex flex-wrap items-center justify-center gap-3">
+                        <div class="flex items-center gap-2 bg-white/5 border border-primary/20 px-4 py-2 rounded-full">
+                            <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+                            <span class="text-sm font-semibold text-white">Esri ArcGIS</span>
+                            <span class="text-xs text-gray-500">.gdb / .shp</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white/5 border border-primary/20 px-4 py-2 rounded-full">
+                            <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
+                            <span class="text-sm font-semibold text-white">QGIS</span>
+                            <span class="text-xs text-gray-500">.shp / .geojson / .gpkg</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white/5 border border-primary/20 px-4 py-2 rounded-full">
+                            <span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span>
+                            <span class="text-sm font-semibold text-white">PostGIS</span>
+                            <span class="text-xs text-gray-500">SQL spatial</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white/5 border border-primary/20 px-4 py-2 rounded-full">
+                            <span class="w-2.5 h-2.5 rounded-full bg-orange-500"></span>
+                            <span class="text-sm font-semibold text-white">AutoCAD</span>
+                            <span class="text-xs text-gray-500">.dwg / .dxf</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pourquoi nous choisir -->
+            <div class="glass rounded-3xl p-8 md:p-12 mb-10">
+                <h3 class="font-urbanist font-bold text-2xl md:text-3xl text-white mb-8">Pourquoi nous choisir ?</h3>
+                <div class="space-y-8">
+                    <div class="flex gap-6 items-start">
+                        <div
+                            class="shrink-0 w-12 h-12 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center font-urbanist font-bold text-primary text-xl">
+                            1</div>
+                        <div>
+                            <h4 class="font-urbanist font-bold text-xl text-white mb-2">Précision et Fidélité</h4>
+                            <p class="text-gray-400 leading-relaxed">Chaque tracé est vérifié pour garantir une
+                                correspondance parfaite avec les plans sources, assurant ainsi la fiabilité des
+                                futures interventions sur le terrain.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6 items-start">
+                        <div
+                            class="shrink-0 w-12 h-12 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center font-urbanist font-bold text-primary text-xl">
+                            2</div>
+                        <div>
+                            <h4 class="font-urbanist font-bold text-xl text-white mb-2">Optimisation des Délais</h4>
+                            <p class="text-gray-400 leading-relaxed">Notre approche technique avancée nous permet de
+                                traiter des volumes importants d'archives dans des délais extrêmement courts, là où
+                                les méthodes traditionnelles de saisie manuelle s'essoufflent.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6 items-start">
+                        <div
+                            class="shrink-0 w-12 h-12 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center font-urbanist font-bold text-primary text-xl">
+                            3</div>
+                        <div>
+                            <h4 class="font-urbanist font-bold text-xl text-white mb-2">Une Donnée "Vivante"</h4>
+                            <p class="text-gray-400 leading-relaxed">Nous ne livrons pas de simples fichiers. Nous
+                                créons des structures de données conçues pour évoluer, permettant une maintenance
+                                simplifiée et une intégration fluide dans vos plateformes de gestion (Next.js,
+                                Dashboards).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Le Résultat -->
+            <div class="glass rounded-3xl p-8 md:p-12 mb-10">
+                <h3 class="font-urbanist font-bold text-2xl md:text-3xl text-white mb-4">Le Résultat : Une <span
+                        class="text-primary">Clarté Opérationnelle</span></h3>
+                <p class="text-gray-400 leading-relaxed mb-6">
+                    En digitalisant votre réseau, vous obtenez bien plus qu'une carte :
+                </p>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3">
+                        <span class="text-primary mt-1 text-xl">✓</span>
+                        <span class="text-gray-300">Réduction des erreurs lors de la planification des travaux.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-primary mt-1 text-xl">✓</span>
+                        <span class="text-gray-300">Accélération de la réponse aux incidents réseau.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-primary mt-1 text-xl">✓</span>
+                        <span class="text-gray-300">Optimisation des coûts de maintenance préventive.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- CTA -->
+            <div class="glass rounded-2xl p-8 md:p-12 text-center glow">
+                <h2 class="font-urbanist font-bold text-3xl text-white mb-4">Collaborons <span
+                        class="text-primary">ensemble</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto mb-8">La transformation de vos archives commence par une
+                    démonstration concrète sur vos propres documents.</p>
+                <a href="index.html#contact"
+                    class="inline-block bg-primary text-dark-bg px-8 py-3 rounded-full font-semibold hover:bg-primary-dark transition btn-glow">Demander
+                    une démonstration</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark-bg border-t border-gray-800 pt-12 pb-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <a href="index.html" class="font-urbanist font-bold text-2xl text-white block mb-6">Spatial<span
+                            class="text-primary">212</span></a>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Pionniers de l'ingénierie géomatique et des
+                        infrastructures télécoms au Maroc.</p>
+                </div>
+                <div>
+                    <h3 class="font-urbanist font-bold text-lg text-white mb-6">Nos Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="service-cartographie.html"
+                                class="text-gray-400 hover:text-primary transition">Cartographie</a></li>
+                        <li><a href="service-releves-terrain.html"
+                                class="text-gray-400 hover:text-primary transition">Relevés Terrain</a></li>
+                        <li><a href="service-analyse-spatiale.html"
+                                class="text-gray-400 hover:text-primary transition">Analyse Spatiale</a></li>
+                        <li><a href="service-gestion-donnees.html"
+                                class="text-gray-400 hover:text-primary transition">Gestion Données</a></li>
+                        <li><a href="service-integration-sig.html"
+                                class="text-gray-400 hover:text-primary transition">Intégration SIG</a></li>
+                        <li><a href="service-ingenierie-ftth.html" class="text-primary">Ingénierie FTTH</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-urbanist font-bold text-lg text-white mb-6">Liens Utiles</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 hover:text-primary transition">Accueil</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-primary transition">Blog</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-primary transition">Politique de
+                                Confidentialité</a></li>
+                        <li><a href="terms.html" class="text-gray-400 hover:text-primary transition">Conditions
+                                Générales</a></li>
+                        <li><a href="legal.html" class="text-gray-400 hover:text-primary transition">Mentions
+                                Légales</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-urbanist font-bold text-lg text-white mb-6">Contact</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li>Lun - Ven : 8h30 - 18h00</li>
+                        <li><a href="mailto:contact@spatial212.ma"
+                                class="hover:text-primary transition">contact@spatial212.ma</a></li>
+                        <li><a href="tel:+212666636683" class="hover:text-primary transition">0666 63 66 83</a> / <a
+                                href="tel:+212611714711" class="hover:text-primary transition">0611 71 47 11</a></li>
+                        <li>Immeuble Omniprise, Av. Al Alaouiyine Rabat, Maroc</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-gray-500 text-sm">© Copyright 2026. All Rights Reserved.</p>
+                <p class="text-gray-500 text-sm">Designed by <span class="text-white">Spatial 212</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+        const mobileServicesBtn = document.getElementById('mobileServicesBtn');
+        const mobileServicesMenu = document.getElementById('mobileServicesMenu');
+        const mobileServicesIcon = document.getElementById('mobileServicesIcon');
+        if (mobileServicesBtn) {
+            mobileServicesBtn.addEventListener('click', () => {
+                mobileServicesMenu.classList.toggle('hidden');
+                mobileServicesIcon.classList.toggle('rotate-180');
+            });
+        }
+
+        const mobileExpertiseBtn = document.getElementById('mobileExpertiseBtn');
+        const mobileExpertiseMenu = document.getElementById('mobileExpertiseMenu');
+        const mobileExpertiseIcon = document.getElementById('mobileExpertiseIcon');
+        if (mobileExpertiseBtn) {
+            mobileExpertiseBtn.addEventListener('click', () => {
+                mobileExpertiseMenu.classList.toggle('hidden');
+                mobileExpertiseIcon.classList.toggle('rotate-180');
+            });
+        }
+        // Reveal on scroll logic
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+    <style>
+        .reveal-card {
+            opacity: 0;
+            transform: scale(0.8) translateY(20px);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); /* Bounce/Popup feel */
+        }
+        .reveal-active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+        .reveal-active:nth-child(2) { transition-delay: 0.1s; }
+        .reveal-active:nth-child(3) { transition-delay: 0.2s; }
+        .reveal-active:nth-child(4) { transition-delay: 0.3s; }
+    </style>
+</body>
+
+</html>
